@@ -9,6 +9,8 @@
         --primary-color: #2c3e50;
         --secondary-color: #34495e;
         --accent-color: #3498db;
+        --danger-color: #e74c3c;
+        --success-color: #2ecc71;
       }
 
       body {
@@ -36,8 +38,15 @@
         margin: 30px 0;
         padding: 40px;
         border-radius: 10px;
-        background-color: var(--secondary-color);
         color: white;
+        transition: background-color 0.3s ease;
+      }
+      .status-container.negative {
+        background-color: var(--danger-color);
+      }
+
+      .status-container.positive {
+        background-color: var(--success-color);
       }
 
       .status {
@@ -54,9 +63,9 @@
       .days-number {
         font-size: 2.5rem;
         font-weight: bold;
-        color: var(--accent-color);
+        color: white;
         display: inline-block;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.2);
         padding: 0 10px;
         border-radius: 5px;
         margin: 0 5px;
@@ -267,7 +276,16 @@
         const inaugurationType = now < new Date("2025-01-20");
         const status = inaugurationType ? STATUS.NOT_YET : STATUS.NO;
 
-        document.getElementById("status").textContent = status.text;
+        const statusElement = document.getElementById("status");
+        const statusContainer = document.querySelector(".status-container");
+
+        statusElement.textContent = status.text;
+
+        if (status.text === "FREE") {
+          statusContainer.className = "status-container positive";
+        } else {
+          statusContainer.className = "status-container negative";
+        }
       }
 
       function updateCountdown() {
