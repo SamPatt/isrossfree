@@ -292,7 +292,7 @@
         const now = new Date();
         const targetDate = new Date("2025-01-20");
         const diffTime = Math.abs(targetDate - now);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
         if (now < targetDate) {
           document.getElementById(
@@ -301,7 +301,7 @@
         } else {
           document.getElementById(
             "countdown"
-          ).innerHTML = `<span class="days-number">${diffDays}</span> days since possible commutation`;
+          ).innerHTML = `<span class="days-number">${diffDays}</span> day since possible commutation`;
         }
       }
 
