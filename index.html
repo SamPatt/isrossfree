@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Is Ross Free?</title>
+    <title>Ross is Free!</title>
     <style>
       :root {
         --primary-color: #2c3e50;
@@ -72,14 +72,17 @@
       }
 
       .image-container {
-        margin: 30px 0;
+        margin: 30px auto;
+        display: inline-block;
+        max-width: 100%;
       }
 
       .ross-image {
         max-width: 100%;
         height: auto;
-        border-radius: 10px;
+        border-radius: 10px 10px 0 0;
         max-height: 400px;
+        display: block;
       }
 
       .info-section {
@@ -119,23 +122,6 @@
         line-height: 1.6;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
-      .image-container {
-        margin: 30px 0;
-      }
-
-      .image-container {
-        margin: 30px auto;
-        display: inline-block;
-        max-width: 100%;
-      }
-
-      .ross-image {
-        max-width: 100%;
-        height: auto;
-        border-radius: 10px 10px 0 0;
-        max-height: 400px;
-        display: block;
-      }
 
       .image-caption {
         background-color: #f8f9fa;
@@ -145,17 +131,6 @@
         font-size: 0.95rem;
         margin-top: -5px;
         text-align: center;
-      }
-
-      .image-caption a {
-        color: var(--accent-color);
-        text-decoration: none;
-        border-bottom: 1px solid transparent;
-        transition: border-bottom-color 0.2s;
-      }
-
-      .image-caption a:hover {
-        border-bottom-color: var(--accent-color);
       }
 
       .footer {
@@ -214,104 +189,56 @@
     <div class="container">
       <h1 class="page-title">Is Ross Ulbricht Free?</h1>
 
-      <div class="status-container">
-        <h1 class="status" id="status">NOT YET</h1>
-        <div class="countdown" id="countdown"></div>
+      <div class="status-container positive">
+        <h1 class="status" id="status">YES!</h1>
+        <div class="countdown" id="countdown">Pardoned January 21, 2025</div>
       </div>
 
       <div class="info-section">
-        <div class="info-section">
-          <div id="status-info">
+        <div id="status-info">
+          <p>
+            As promised during his campaign, President Trump freed Ross Ulbricht on January 21, 2025, receiving a full pardon after 11 years in prison.
+          </p>
+          <div class="quote">
             <p>
-              In 2024 during his election campaign, President Trump
-              <a
-                href="https://slate.com/news-and-politics/2024/05/trump-campaign-libertarian-vote-ulbricht-pardon-silk-road.html"
-                >promised</a
-              >
-              to commute Ross Ulbricht's sentence:
             </p>
-            <div class="quote">
-              <p>
-                "If you vote for me, on Day 1, I will commute the sentence of
-                Ross Ulbricht to a sentence of time served.
-              </p>
-              <p>He's already served 11 years. We're going to get him home."</p>
-            </div>
           </div>
         </div>
       </div>
+      
       <div class="image-container">
         <img
           id="ross-image"
           class="ross-image"
-          src="ross_prison.jpg"
-          alt="Ross Ulbricht in prison"
+          src="freeross.png"
+          alt="Ross Ulbricht freed from prison"
         />
-        <div class="image-caption">Ross Ulbricht in prison, bottom left.</div>
+        <div class="image-caption">Ross Ulbricht walking free after his sentence was commuted on January 21, 2025.</div>
       </div>
+      
       <div class="footer">
-        Learn more and get involved at
+        Follow Ross's story at
         <a href="https://freeross.org/" target="_blank">FreeRoss.org</a>
       </div>
     </div>
 
     <script>
       const STATUS = {
-        NOT_YET: {
-          text: "NOT YET",
-        },
-        NO: {
-          text: "NO",
-        },
-        COMMUTED_IMPRISONED: {
-          text: "SENTENCE COMMUTED BUT STILL IMPRISONED",
-        },
         FREE: {
-          text: "FREE",
-        },
+          text: "YES!",
+        }
       };
 
       function updateStatus() {
-        const now = new Date();
-        const inaugurationType = now < new Date("2025-01-20");
-        const status = inaugurationType ? STATUS.NOT_YET : STATUS.NO;
-
         const statusElement = document.getElementById("status");
         const statusContainer = document.querySelector(".status-container");
-
-        statusElement.textContent = status.text;
-
-        if (status.text === "FREE") {
-          statusContainer.className = "status-container positive";
-        } else {
-          statusContainer.className = "status-container negative";
-        }
-      }
-
-      function updateCountdown() {
-        const now = new Date();
-        const targetDate = new Date("2025-01-20");
-        const diffTime = Math.abs(targetDate - now);
-        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-        if (now < targetDate) {
-          document.getElementById(
-            "countdown"
-          ).innerHTML = `<span class="days-number">${diffDays}</span> days until possible commutation`;
-        } else {
-          document.getElementById(
-            "countdown"
-          ).innerHTML = `<span class="days-number">${diffDays}</span> day since possible commutation`;
-        }
+        
+        statusElement.textContent = STATUS.FREE.text;
+        statusContainer.className = "status-container positive";
       }
 
       // Initial status set
       updateStatus();
-      updateCountdown();
-
-      // Update countdown every day
-      setInterval(updateCountdown, 24 * 60 * 60 * 1000);
-      setInterval(updateStatus, 24 * 60 * 60 * 1000);
     </script>
   </body>
 </html>
